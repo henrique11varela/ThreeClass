@@ -65,10 +65,10 @@ animations.push(function (deltaTime: number) {
   camera.rotation.y = orientation.alpha * (Math.PI / 180)
   camera.rotation.z = orientation.gamma * (Math.PI / 180)
   const pos: [number, number, number] = [0, 0, 0]
-  const h = CAMERA_DISTANCE * Math.cos(camera.rotation.x)
-  pos[2] = CAMERA_DISTANCE * Math.sin(camera.rotation.x)
-  pos[1] = CAMERA_DISTANCE * Math.cos(camera.rotation.y)
-  pos[0] = CAMERA_DISTANCE * Math.sin(camera.rotation.y)
+  const h = CAMERA_DISTANCE * Math.sin(camera.rotation.x)
+  pos[1] = CAMERA_DISTANCE * Math.cos(camera.rotation.x)
+  pos[2] = CAMERA_DISTANCE * Math.sin(camera.rotation.y)
+  pos[0] = CAMERA_DISTANCE * Math.cos(camera.rotation.y)
   camera.position.set(...pos)
 })
 
