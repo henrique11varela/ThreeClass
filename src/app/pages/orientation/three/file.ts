@@ -59,9 +59,9 @@ const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotate
 };
 
 animations.push(function (deltaTime: number) {
-    cube.rotation.x = orientation.beta * Math.PI / 180
-    cube.rotation.y = orientation.alpha * Math.PI / 180
-    cube.rotation.z = orientation.gamma * Math.PI / 180
+    cube.rotation.x = orientation.beta * Math.PI / 180 * -1
+    cube.rotation.y = orientation.alpha * Math.PI / 180 * -1
+    cube.rotation.z = orientation.gamma * Math.PI / 180 * -1
 })
 
 
