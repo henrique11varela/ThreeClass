@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ExampleComponent } from './pages/example/example.component';
 import { ModelComponent } from './pages/model/model.component';
+import { OrientationComponent } from './pages/orientation/orientation.component';
 
 const routes: Routes = [
   {
@@ -21,6 +22,10 @@ const routes: Routes = [
   {
     path: 'model',
     component: ModelComponent
+  },
+  {
+    path: 'orientation',
+    component: OrientationComponent
   }
 ];
 
