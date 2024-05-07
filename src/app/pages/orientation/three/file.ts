@@ -31,6 +31,12 @@ const cube = new THREE.Mesh(geometry, material)
 
 scene.add(cube)
 
+const orientation: any = {
+    alpha: 0,
+    gamma: 0,
+    beta: 0,
+}
+
 if (window.DeviceOrientationEvent) {
     window.addEventListener(
         "deviceorientation",
@@ -46,8 +52,17 @@ if (window.DeviceOrientationEvent) {
 }
 
 const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotateDegrees: number) => {
-    cube.rotation.set(frontToBack, rotateDegrees, leftToRight)
+    orientation.alpha = rotateDegrees
+    orientation.gamma = leftToRight
+    orientation.beta = frontToBack
+    // cube.rotation.set(frontToBack, rotateDegrees, leftToRight)
 };
+
+animations.push(function (deltaTime: number) {
+    cube.rotation.x = orientation.beta
+    cube.rotation.y = orientation.alpha
+    cube.rotation.z = orientation.gamma
+})
 
 
 let lastFrameTime: number = 0
@@ -67,4 +82,5 @@ renderer.setAnimationLoop(animate)
 
 export {
     renderer,
+    orientation
 }
