@@ -15,17 +15,17 @@ export class OrientationComponent implements AfterViewInit {
       window.addEventListener(
         "deviceorientation",
         (event) => {
-          const rotateDegrees = event.alpha; // alpha: rotation around z-axis
-          const leftToRight = event.gamma; // gamma: left to right
-          const frontToBack = event.beta; // beta: front back motion
+          const rotateDegrees: number = Number(event.alpha); // alpha: rotation around z-axis
+          const leftToRight: number = Number(event.gamma); // gamma: left to right
+          const frontToBack: number = Number(event.beta); // beta: front back motion
 
-          handleOrientationEvent(frontToBack, leftToRight, rotateDegrees);
+          handleOrientationEvent(Math.floor(frontToBack), Math.floor(leftToRight), Math.floor(rotateDegrees));
         },
         true,
       );
     }
 
-    const handleOrientationEvent = (frontToBack: any, leftToRight: any, rotateDegrees: any) => {
+    const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotateDegrees: number) => {
       this.alpha = rotateDegrees
       this.gamma = leftToRight
       this.beta = frontToBack
