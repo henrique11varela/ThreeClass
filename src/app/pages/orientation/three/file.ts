@@ -58,10 +58,18 @@ const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotate
   // cube.rotation.set(frontToBack, rotateDegrees, leftToRight)
 };
 
+const CAMERA_DISTANCE = 10
+
 animations.push(function (deltaTime: number) {
-  cube.rotation.x = orientation.beta * Math.PI / 180
-  cube.rotation.y = orientation.alpha * Math.PI / 180
-  cube.rotation.z = orientation.gamma * Math.PI / 180
+  camera.rotation.x = orientation.beta * (Math.PI / 180)
+  camera.rotation.y = orientation.alpha * (Math.PI / 180)
+  camera.rotation.z = orientation.gamma * (Math.PI / 180)
+  const pos: [number, number, number] = [0, 0, 0]
+  const h = CAMERA_DISTANCE * Math.cos(camera.rotation.x)
+  pos[2] = CAMERA_DISTANCE * Math.sin(camera.rotation.x)
+  pos[1] = CAMERA_DISTANCE * Math.cos(camera.rotation.y)
+  pos[0] = CAMERA_DISTANCE * Math.sin(camera.rotation.y)
+  camera.position.set(...pos)
 })
 
 
