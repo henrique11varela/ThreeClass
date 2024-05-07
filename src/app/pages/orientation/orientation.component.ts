@@ -7,7 +7,7 @@ import { renderer, getOrientation } from "./three/file";
 })
 export class OrientationComponent implements AfterViewInit {
   @ViewChild('orientation') orientationElement!: ElementRef<HTMLDivElement>
-  public getOrientation = getOrientation
+  public getOrientation = () => getOrientation()
 
   ngAfterViewInit(): void {
     this.orientationElement.nativeElement.appendChild(renderer.domElement)
