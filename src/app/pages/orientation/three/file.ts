@@ -24,6 +24,13 @@ const material = new THREE.MeshLambertMaterial({color: 0x888888})
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const cube = new THREE.Mesh(geometry, material)
 scene.add(cube)
+const material2 = new THREE.MeshLambertMaterial({color: 0xff0000})
+const geometry2 = new THREE.BoxGeometry(.5, .5, .5)
+const cube2 = new THREE.Mesh(geometry2, material2)
+cube2.position.y = 1
+cube.add(cube2)
+
+
 
 
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
@@ -72,7 +79,7 @@ animations.push(function (deltaTime: number) {
     // pos[2] = h * Math.sin(rad.alpha)
     // pos[0] = h * Math.cos(rad.alpha)
     camera.position.set(...pos)
-    camera.rotation.set(degToRad(orientation.gamma), degToRad(orientation.beta), degToRad(orientation.alpha * 0))
+    camera.rotation.set(degToRad(orientation.beta), degToRad(orientation.gamma), degToRad(orientation.alpha * 0))
 })
 
 
