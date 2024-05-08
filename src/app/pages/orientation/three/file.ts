@@ -37,7 +37,7 @@ const orientation: any = {
 
 if (window.DeviceOrientationEvent) {
     window.addEventListener(
-        "deviceorientationabsolute",
+        "deviceorientation",
         (event) => {
             handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
@@ -72,7 +72,7 @@ animations.push(function (deltaTime: number) {
     // pos[2] = h * Math.sin(rad.alpha)
     // pos[0] = h * Math.cos(rad.alpha)
     camera.position.set(...pos)
-    camera.rotation.set(degToRad(0), degToRad(0), degToRad(orientation.alpha))
+    camera.rotation.set(degToRad(0), degToRad(orientation.beta), degToRad(orientation.alpha))
 })
 
 
