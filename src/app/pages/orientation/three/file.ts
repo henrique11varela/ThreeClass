@@ -56,7 +56,8 @@ if (window.DeviceOrientationEvent) {
     window.addEventListener(
         "deviceorientation",
         (event) => {
-            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
+            handleOrientationEvent(90, 0, 0);
+            // handleOrientationEvent(Math.round(Number(event.beta)) - 90, Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
         true,
     );
@@ -121,5 +122,6 @@ renderer.setAnimationLoop(animate)
 
 export {
     renderer,
-    camera
+    camera,
+    orientation
 }

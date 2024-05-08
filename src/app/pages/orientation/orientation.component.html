@@ -2,8 +2,8 @@
     <p>px: {{ round(cameraObj.position.x) }}</p>
     <p>py: {{ round(cameraObj.position.y) }}</p>
     <p>pz: {{ round(cameraObj.position.z) }}</p>
-    <p>rx: {{ round(cameraObj.rotation.x) }}</p>
-    <p>ry: {{ round(cameraObj.rotation.y) }}</p>
-    <p>rz: {{ round(cameraObj.rotation.z) }}</p>
+    <p>rx: {{ round(cameraObj.rotation.x) }} {{ orientationObj.beta }}</p>
+    <p>ry: {{ round(cameraObj.rotation.y) }} {{ orientationObj.gamma }}</p>
+    <p>rz: {{ round(cameraObj.rotation.z) }} {{ orientationObj.alpha }}</p>
 </div>
 <div #orientation></div>

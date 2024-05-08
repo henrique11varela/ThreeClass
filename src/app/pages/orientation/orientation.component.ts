@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { renderer, camera } from "./three/file";
+import { renderer, camera, orientation } from "./three/file";
 @Component({
   selector: 'app-orientation',
   templateUrl: './orientation.component.html',
@@ -8,11 +8,13 @@ import { renderer, camera } from "./three/file";
 export class OrientationComponent implements AfterViewInit {
   @ViewChild('orientation') orientationElement!: ElementRef<HTMLDivElement>
   public cameraObj: any = camera
+  public orientationObj: any = orientation
 
   ngAfterViewInit(): void {
     this.orientationElement.nativeElement.appendChild(renderer.domElement)
     setInterval(()=>{
       this.cameraObj = camera
+      this.orientationObj = orientation
     }, 100)
   }
 
