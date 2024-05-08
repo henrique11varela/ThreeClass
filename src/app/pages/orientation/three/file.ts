@@ -57,8 +57,10 @@ if (window.DeviceOrientationEvent) {
         "deviceorientation",
         (event) => {
             //around x, y, z
-            handleOrientationEvent(90, 90, 90);
-            // handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
+            // console.log(event);
+            
+            // handleOrientationEvent(90, 0, 45);
+            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
         true,
     );
@@ -86,7 +88,7 @@ animations.push(function (deltaTime: number) {
     pos[1] = Math.cos(beta) * CAMERA_DISTANCE // OK
     pos[2] = Math.sin(beta) * Math.cos(alpha) * CAMERA_DISTANCE
     camera.position.set(...pos)
-    camera.rotation.set(beta - Math.PI / 2, gamma, (alpha * 0))
+    camera.rotation.set(beta - Math.PI / 2, alpha, (gamma * 0))
 })
 
 
