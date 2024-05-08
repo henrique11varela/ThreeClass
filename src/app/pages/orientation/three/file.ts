@@ -57,8 +57,8 @@ if (window.DeviceOrientationEvent) {
         "deviceorientation",
         (event) => {
             //around x, y, z
-            // handleOrientationEvent(90, 45, 0);
-            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
+            handleOrientationEvent(90, 90, 90);
+            // handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
         true,
     );
@@ -82,9 +82,9 @@ animations.push(function (deltaTime: number) {
     const alpha = degToRad(orientation.alpha)
 
     const pos: [number, number, number] = [0, 10, 0]
-    pos[0] = Math.sin(beta) * Math.sin(gamma) * CAMERA_DISTANCE
+    pos[0] = Math.sin(beta) * Math.sin(alpha) * CAMERA_DISTANCE
     pos[1] = Math.cos(beta) * CAMERA_DISTANCE // OK
-    pos[2] = Math.sin(beta) * Math.cos(gamma) * CAMERA_DISTANCE
+    pos[2] = Math.sin(beta) * Math.cos(alpha) * CAMERA_DISTANCE
     camera.position.set(...pos)
     camera.rotation.set(beta - Math.PI / 2, gamma, (alpha * 0))
 })
