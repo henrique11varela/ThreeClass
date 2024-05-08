@@ -4,7 +4,7 @@ const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 
 const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000)
-camera.position.z = 10
+// camera.position.z = 10
 
 const scene: THREE.Scene = new THREE.Scene()
 
@@ -83,13 +83,13 @@ animations.push(function (deltaTime: number) {
     // camera.rotation.x = -rad.beta
     // camera.rotation.y = -rad.alpha
     // camera.rotation.z = -rad.gamma
-    const pos: [number, number, number] = [0, 0, 10]
+    const pos: [number, number, number] = [0, 10, 0]
     // const h = CAMERA_DISTANCE * Math.sin(rad.beta)
     // pos[1] = CAMERA_DISTANCE * Math.cos(rad.beta)
     // pos[2] = h * Math.sin(rad.alpha)
     // pos[0] = h * Math.cos(rad.alpha)
     camera.position.set(...pos)
-    camera.rotation.set(degToRad(orientation.beta - 90), degToRad(orientation.gamma), degToRad(orientation.alpha * 0))
+    camera.rotation.set(degToRad(orientation.beta), degToRad(orientation.gamma), degToRad(orientation.alpha * 0))
 })
 
 
