@@ -61,14 +61,19 @@ const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotate
 const CAMERA_DISTANCE = 10
 
 animations.push(function (deltaTime: number) {
-    camera.rotation.x = orientation.beta * (Math.PI / 180)
-    camera.rotation.y = orientation.alpha * (Math.PI / 180)
-    camera.rotation.z = orientation.gamma * (Math.PI / 180)
+    const rad: any = {
+        alpha: orientation.alpha * (Math.PI / 180),
+        gamma: orientation.gamma * (Math.PI / 180),
+        beta: orientation.beta * (Math.PI / 180),
+    }
+    camera.rotation.x = -rad.beta
+    camera.rotation.y = -rad.alpha
+    camera.rotation.z = -rad.gamma
     const pos: [number, number, number] = [0, 0, 0]
-    const h = CAMERA_DISTANCE * Math.sin(camera.rotation.x)
-    pos[1] = CAMERA_DISTANCE * Math.cos(camera.rotation.x)
-    pos[2] = h * Math.sin(camera.rotation.y)
-    pos[0] = h * Math.cos(camera.rotation.y)
+    const h = CAMERA_DISTANCE * Math.sin(rad.beta)
+    pos[1] = CAMERA_DISTANCE * Math.cos(rad.beta)
+    pos[2] = h * Math.sin(rad.alpha)
+    pos[0] = h * Math.cos(rad.alpha)
     camera.position.set(...pos)
 })
 
