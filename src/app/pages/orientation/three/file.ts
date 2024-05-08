@@ -86,7 +86,7 @@ animations.push(function (deltaTime: number) {
     pos[1] = CAMERA_DISTANCE * Math.cos(beta)
     pos[2] = h * Math.sin(gamma) * -1
     camera.position.set(...pos)
-    camera.rotation.set(beta - Math.PI / 2, alpha, (gamma * 0))
+    camera.rotation.set(beta - Math.PI / 2, gamma, (alpha * 0))
 })
 
 
