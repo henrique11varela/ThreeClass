@@ -56,17 +56,18 @@ if (window.DeviceOrientationEvent) {
     window.addEventListener(
         "deviceorientation",
         (event) => {
-            // handleOrientationEvent(90, 0, 0);
-            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
+            //around x, y, z
+            handleOrientationEvent(90, 45, 0);
+            // handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
         true,
     );
 }
 
 const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotateDegrees: number) => {
-    orientation.alpha = rotateDegrees
-    orientation.gamma = leftToRight
     orientation.beta = frontToBack
+    orientation.gamma = leftToRight
+    orientation.alpha = rotateDegrees
 };
 
 function degToRad(deg: number) {
@@ -81,10 +82,9 @@ animations.push(function (deltaTime: number) {
     const alpha = degToRad(orientation.alpha)
 
     const pos: [number, number, number] = [0, 10, 0]
-    const h = CAMERA_DISTANCE * Math.sin(beta)
-    pos[0] = h * Math.cos(gamma)
-    pos[1] = CAMERA_DISTANCE * Math.cos(beta)
-    pos[2] = h * Math.sin(gamma) * -1
+    pos[0] = Math.sin(beta) * Math.sin(gamma) * CAMERA_DISTANCE
+    pos[1] = Math.cos(beta) * CAMERA_DISTANCE // OK
+    pos[2] = Math.sin(beta) * Math.cos(gamma) * CAMERA_DISTANCE
     camera.position.set(...pos)
     camera.rotation.set(beta - Math.PI / 2, gamma, (alpha * 0))
 })
