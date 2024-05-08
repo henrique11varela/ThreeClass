@@ -83,17 +83,17 @@ animations.push(function (deltaTime: number) {
     // camera.rotation.x = -rad.beta
     // camera.rotation.y = -rad.alpha
     // camera.rotation.z = -rad.gamma
-    const beta = degToRad(orientation.beta - 90)
+    const beta = degToRad(orientation.beta)
     const gamma = degToRad(orientation.gamma)
     const alpha = degToRad(orientation.alpha)
 
     const pos: [number, number, number] = [0, 10, 0]
-    const h = CAMERA_DISTANCE * Math.sin(beta- (Math.PI / 2)) * -1
-    pos[1] = CAMERA_DISTANCE * Math.cos(beta- (Math.PI / 2)) * -1
+    const h = CAMERA_DISTANCE * Math.sin(beta)
+    pos[1] = CAMERA_DISTANCE * Math.cos(beta)
     pos[2] = h * Math.sin(alpha)
     pos[0] = h * Math.cos(alpha)
     camera.position.set(...pos)
-    camera.rotation.set(beta - (Math.PI / 2), gamma, (alpha * 0))
+    camera.rotation.set(beta - Math.PI / 2, gamma, (alpha * 0))
 })
 
 
