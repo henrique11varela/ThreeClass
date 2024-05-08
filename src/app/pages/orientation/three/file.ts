@@ -89,7 +89,7 @@ animations.push(function (deltaTime: number) {
     // pos[2] = h * Math.sin(rad.alpha)
     // pos[0] = h * Math.cos(rad.alpha)
     camera.position.set(...pos)
-    camera.rotation.set(degToRad(orientation.beta - 90), degToRad(orientation.gamma), degToRad(orientation.alpha * 0))
+    camera.rotation.set(degToRad(orientation.beta - 90), degToRad(orientation.gamma), degToRad(orientation.alpha))
 })
 
 
