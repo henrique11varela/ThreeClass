@@ -19,18 +19,16 @@ scene.add(dLight)
 const aLight: THREE.AmbientLight = new THREE.AmbientLight(0xffffff, 1)
 scene.add(aLight)
 
-
 // const material = new THREE.MeshLambertMaterial(materialOptions)
-const material = new THREE.MeshLambertMaterial({
-    color: 0x888888
-})
-
+const material = new THREE.MeshLambertMaterial({color: 0x888888})
 const geometry = new THREE.BoxGeometry(1, 1, 1)
-
 const cube = new THREE.Mesh(geometry, material)
-
 scene.add(cube)
 
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                                  ORIENTATION                                               //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 const orientation: any = {
     alpha: 0,
     gamma: 0,
@@ -41,11 +39,7 @@ if (window.DeviceOrientationEvent) {
     window.addEventListener(
         "deviceorientation",
         (event) => {
-            const rotateDegrees: number = Number(event.alpha); // alpha: rotation around z-axis
-            const leftToRight: number = Number(event.gamma); // gamma: left to right
-            const frontToBack: number = Number(event.beta); // beta: front back motion
-
-            handleOrientationEvent(Math.floor(frontToBack), Math.floor(leftToRight), Math.floor(rotateDegrees));
+            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
         true,
     );
@@ -55,27 +49,38 @@ const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotate
     orientation.alpha = rotateDegrees
     orientation.gamma = leftToRight
     orientation.beta = frontToBack
-    // cube.rotation.set(frontToBack, rotateDegrees, leftToRight)
 };
+
+function degToRad(deg: number) {
+    return deg * ( Math.PI / 180)
+}
 
 const CAMERA_DISTANCE = 10
 
 animations.push(function (deltaTime: number) {
-    const rad: any = {
-        alpha: orientation.alpha * (Math.PI / 180),
-        gamma: orientation.gamma * (Math.PI / 180),
-        beta: orientation.beta * (Math.PI / 180),
-    }
-    camera.rotation.x = -rad.beta
-    camera.rotation.y = -rad.alpha
-    camera.rotation.z = -rad.gamma
-    const pos: [number, number, number] = [0, 0, 0]
-    const h = CAMERA_DISTANCE * Math.sin(rad.beta)
-    pos[1] = CAMERA_DISTANCE * Math.cos(rad.beta)
-    pos[2] = h * Math.sin(rad.alpha)
-    pos[0] = h * Math.cos(rad.alpha)
+    // const rad: any = {
+    //     alpha: orientation.alpha * (Math.PI / 180),
+    //     gamma: orientation.gamma * (Math.PI / 180),
+    //     beta: orientation.beta * (Math.PI / 180),
+    // }
+    // camera.rotation.x = -rad.beta
+    // camera.rotation.y = -rad.alpha
+    // camera.rotation.z = -rad.gamma
+    const pos: [number, number, number] = [0, 0, 10]
+    // const h = CAMERA_DISTANCE * Math.sin(rad.beta)
+    // pos[1] = CAMERA_DISTANCE * Math.cos(rad.beta)
+    // pos[2] = h * Math.sin(rad.alpha)
+    // pos[0] = h * Math.cos(rad.alpha)
     camera.position.set(...pos)
+    camera.rotation.set(degToRad(orientation.alpha), degToRad(0), degToRad(0))
 })
+
+
+
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+//                                              END OF ORIENTATION                                            //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
 
 let lastFrameTime: number = 0
@@ -91,11 +96,9 @@ function animate(time: number) {
 
 renderer.setAnimationLoop(animate)
 
-function getOrientation() {
-    return { ...orientation }
-}
+
 
 export {
     renderer,
-    getOrientation
+    camera
 }

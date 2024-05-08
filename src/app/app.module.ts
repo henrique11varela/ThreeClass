@@ -7,6 +7,7 @@ import { ExampleComponent } from './pages/example/example.component';
 import { HomeComponent } from './pages/home/home.component';
 import { ModelComponent } from './pages/model/model.component';
 import { OrientationComponent } from './pages/orientation/orientation.component';
+import { OrientationControlsComponent } from './pages/orientation-controls/orientation-controls.component';
 
 @NgModule({
   declarations: [
@@ -14,7 +15,8 @@ import { OrientationComponent } from './pages/orientation/orientation.component'
     ExampleComponent,
     HomeComponent,
     ModelComponent,
-    OrientationComponent
+    OrientationComponent,
+    OrientationControlsComponent
   ],
   imports: [
     BrowserModule,
