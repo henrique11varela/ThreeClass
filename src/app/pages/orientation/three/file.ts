@@ -57,8 +57,8 @@ if (window.DeviceOrientationEvent) {
         "deviceorientation",
         (event) => {
             //around x, y, z
-            handleOrientationEvent(90, 45, 0);
-            // handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
+            // handleOrientationEvent(90, 45, 0);
+            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
         true,
     );
