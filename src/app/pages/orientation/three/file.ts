@@ -37,7 +37,7 @@ const orientation: any = {
 
 if (window.DeviceOrientationEvent) {
     window.addEventListener(
-        "deviceorientation",
+        "deviceorientationabsolute",
         (event) => {
             handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
         },
