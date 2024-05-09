@@ -80,23 +80,24 @@ function degToRad(deg: number) {
     return deg * ( Math.PI / 180)
 }
 
-const CAMERA_DISTANCE = 10
 
 animations.push(function (deltaTime: number) {
+    const CAMERA_DISTANCE = controls.getDistance()
     const beta = degToRad(orientation.beta)
     const gamma = degToRad(orientation.gamma)
     const alpha = degToRad(orientation.alpha)
 
     const pos: [number, number, number] = [0, 10, 0]
     pos[0] = Math.sin(beta) * Math.sin(alpha) * CAMERA_DISTANCE
-    pos[1] = Math.cos(beta) * CAMERA_DISTANCE // OK
+    pos[1] = Math.cos(beta) * CAMERA_DISTANCE 
     pos[2] = Math.sin(beta) * Math.cos(alpha) * CAMERA_DISTANCE
     camera.position.set(...pos)
-    // camera.rotation.y = alpha
-    // camera.rotation.x = beta - Math.PI / 2
-    // camera.rotation.set(beta - Math.PI / 2, alpha, alpha * Math.cos(beta))
-    // camera.position.x += deltaTime / 2
-    // camera.position.y += deltaTime / 2
+    if (beta < 0) {
+        camera.up.set(0,-1,0)
+    }
+    else  {
+        camera.up.set(0,1,0)
+    }
     controls.update()
 })
 console.log(controls);
