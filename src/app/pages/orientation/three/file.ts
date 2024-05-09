@@ -24,21 +24,21 @@ const aLight: THREE.AmbientLight = new THREE.AmbientLight(0xffffff, 1)
 scene.add(aLight)
 
 // const material = new THREE.MeshLambertMaterial(materialOptions)
-const material = new THREE.MeshLambertMaterial({color: 0x888888})
+const material = new THREE.MeshLambertMaterial({ color: 0x888888 })
 const geometry = new THREE.BoxGeometry(1, 1, 1)
 const cube = new THREE.Mesh(geometry, material)
 scene.add(cube)
-const materialX = new THREE.MeshLambertMaterial({color: 0xff0000})
+const materialX = new THREE.MeshLambertMaterial({ color: 0xff0000 })
 const geometryX = new THREE.BoxGeometry(.5, .5, .5)
 const cubeX = new THREE.Mesh(geometryX, materialX)
 cubeX.position.x = 1
 cube.add(cubeX)
-const materialY = new THREE.MeshLambertMaterial({color: 0x0000ff})
+const materialY = new THREE.MeshLambertMaterial({ color: 0x0000ff })
 const geometryY = new THREE.BoxGeometry(.5, .5, .5)
 const cubeY = new THREE.Mesh(geometryY, materialY)
 cubeY.position.y = 1
 cube.add(cubeY)
-const materialZ = new THREE.MeshLambertMaterial({color: 0x00ff00})
+const materialZ = new THREE.MeshLambertMaterial({ color: 0x00ff00 })
 const geometryZ = new THREE.BoxGeometry(.5, .5, .5)
 const cubeZ = new THREE.Mesh(geometryZ, materialZ)
 cubeZ.position.z = 1
@@ -62,22 +62,24 @@ if (window.DeviceOrientationEvent) {
         (event) => {
             //around x, y, z
             // console.log(event);
-            
+
             // handleOrientationEvent(90, 0, 45);
-            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.alpha)), Math.round(Number(event.gamma)));
+            handleOrientationEvent(Math.floor(Number(event.beta)), Math.floor(Number(event.alpha)), Math.floor(Number(event.gamma)));
         },
         true,
     );
 }
 
 const handleOrientationEvent = (pitch: number, yaw: number, roll: number) => {
-    orientation.beta = pitch
-    orientation.alpha = yaw
-    orientation.gamma = roll
+    if (pitch && yaw && roll) {
+        orientation.beta = pitch
+        orientation.alpha = yaw
+        orientation.gamma = roll
+    }
 };
 
 function degToRad(deg: number) {
-    return deg * ( Math.PI / 180)
+    return deg * (Math.PI / 180)
 }
 
 
@@ -89,14 +91,14 @@ animations.push(function (deltaTime: number) {
 
     const pos: [number, number, number] = [0, 10, 0]
     pos[0] = Math.sin(beta) * Math.sin(alpha) * CAMERA_DISTANCE
-    pos[1] = Math.cos(beta) * CAMERA_DISTANCE 
+    pos[1] = Math.cos(beta) * CAMERA_DISTANCE
     pos[2] = Math.sin(beta) * Math.cos(alpha) * CAMERA_DISTANCE
     camera.position.set(...pos)
     if (beta < 0) {
-        camera.up.set(0,-1,0)
+        camera.up.set(0, -1, 0)
     }
-    else  {
-        camera.up.set(0,1,0)
+    else {
+        camera.up.set(0, 1, 0)
     }
     controls.update()
 })
