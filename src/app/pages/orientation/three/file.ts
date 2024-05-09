@@ -1,10 +1,14 @@
 import * as THREE from "three"
+import { OrbitControls } from "three/examples/jsm/controls/OrbitControls"
 
 const renderer: THREE.WebGLRenderer = new THREE.WebGLRenderer()
 renderer.setSize(window.innerWidth, window.innerHeight)
 
 const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 1000)
-// camera.position.z = 10
+camera.position.z = 10
+
+const controls = new OrbitControls(camera, renderer.domElement)
+
 
 const scene: THREE.Scene = new THREE.Scene()
 
@@ -60,16 +64,16 @@ if (window.DeviceOrientationEvent) {
             // console.log(event);
             
             // handleOrientationEvent(90, 0, 45);
-            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.gamma)), Math.round(Number(event.alpha)));
+            handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.alpha)), Math.round(Number(event.gamma)));
         },
         true,
     );
 }
 
-const handleOrientationEvent = (frontToBack: number, leftToRight: number, rotateDegrees: number) => {
-    orientation.beta = frontToBack
-    orientation.gamma = leftToRight
-    orientation.alpha = rotateDegrees
+const handleOrientationEvent = (pitch: number, yaw: number, roll: number) => {
+    orientation.beta = pitch
+    orientation.alpha = yaw
+    orientation.gamma = roll
 };
 
 function degToRad(deg: number) {
@@ -88,8 +92,14 @@ animations.push(function (deltaTime: number) {
     pos[1] = Math.cos(beta) * CAMERA_DISTANCE // OK
     pos[2] = Math.sin(beta) * Math.cos(alpha) * CAMERA_DISTANCE
     camera.position.set(...pos)
-    camera.rotation.set(beta - Math.PI / 2, alpha, (gamma * 0))
+    // camera.rotation.y = alpha
+    // camera.rotation.x = beta - Math.PI / 2
+    // camera.rotation.set(beta - Math.PI / 2, alpha, alpha * Math.cos(beta))
+    // camera.position.x += deltaTime / 2
+    // camera.position.y += deltaTime / 2
+    controls.update()
 })
+console.log(controls);
 
 
 
@@ -111,8 +121,6 @@ function animate(time: number) {
 }
 
 renderer.setAnimationLoop(animate)
-
-
 
 export {
     renderer,
