@@ -8,6 +8,7 @@ import { HomeComponent } from './pages/home/home.component';
 import { ModelComponent } from './pages/model/model.component';
 import { OrientationComponent } from './pages/orientation/orientation.component';
 import { OrientationControlsComponent } from './pages/orientation-controls/orientation-controls.component';
+import { GyroModelComponent } from './pages/gyro-model/gyro-model.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { OrientationControlsComponent } from './pages/orientation-controls/orien
     HomeComponent,
     ModelComponent,
     OrientationComponent,
-    OrientationControlsComponent
+    OrientationControlsComponent,
+    GyroModelComponent
   ],
   imports: [
     BrowserModule,

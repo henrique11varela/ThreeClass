@@ -5,6 +5,7 @@ import { ExampleComponent } from './pages/example/example.component';
 import { ModelComponent } from './pages/model/model.component';
 import { OrientationComponent } from './pages/orientation/orientation.component';
 import { OrientationControlsComponent } from './pages/orientation-controls/orientation-controls.component';
+import { GyroModelComponent } from './pages/gyro-model/gyro-model.component';
 
 const routes: Routes = [
   {
@@ -31,6 +32,10 @@ const routes: Routes = [
   {
     path: 'orientation-controls',
     component: OrientationControlsComponent
+  },
+  {
+    path: 'gyro-model',
+    component: GyroModelComponent
   }
 ];
 
