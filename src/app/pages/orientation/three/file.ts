@@ -8,6 +8,9 @@ const camera: THREE.PerspectiveCamera = new THREE.PerspectiveCamera(50, window.i
 camera.position.z = 10
 
 const controls = new OrbitControls(camera, renderer.domElement)
+controls.enablePan = false
+controls.enableRotate = false
+controls.enableZoom = false
 
 
 const scene: THREE.Scene = new THREE.Scene()
@@ -71,11 +74,11 @@ if (window.DeviceOrientationEvent) {
 }
 
 const handleOrientationEvent = (pitch: number, yaw: number, roll: number) => {
-    if (pitch && yaw && roll) {
+    // if (pitch && yaw && roll) {
         orientation.beta = pitch
         orientation.alpha = yaw
         orientation.gamma = roll
-    }
+    // }
 };
 
 function degToRad(deg: number) {
@@ -83,8 +86,8 @@ function degToRad(deg: number) {
 }
 
 
+const CAMERA_DISTANCE = 10
 animations.push(function (deltaTime: number) {
-    const CAMERA_DISTANCE = controls.getDistance()
     const beta = degToRad(orientation.beta)
     const gamma = degToRad(orientation.gamma)
     const alpha = degToRad(orientation.alpha)
@@ -100,6 +103,8 @@ animations.push(function (deltaTime: number) {
     else {
         camera.up.set(0, 1, 0)
     }
+    console.log(Math.sin(beta), Math.cos(beta));
+    
     controls.update()
 })
 console.log(controls);
