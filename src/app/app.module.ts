@@ -9,6 +9,7 @@ import { ModelComponent } from './pages/model/model.component';
 import { OrientationComponent } from './pages/orientation/orientation.component';
 import { OrientationControlsComponent } from './pages/orientation-controls/orientation-controls.component';
 import { GyroModelComponent } from './pages/gyro-model/gyro-model.component';
+import { CamTextComponent } from './pages/cam-text/cam-text.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { GyroModelComponent } from './pages/gyro-model/gyro-model.component';
     ModelComponent,
     OrientationComponent,
     OrientationControlsComponent,
-    GyroModelComponent
+    GyroModelComponent,
+    CamTextComponent
   ],
   imports: [
     BrowserModule,
