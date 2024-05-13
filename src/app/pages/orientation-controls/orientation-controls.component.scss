@@ -6,3 +6,10 @@
     right: unset;
     bottom: unset;
 }
+
+.btnToggle {
+    position: fixed;
+    z-index: 5;
+    top: 1em;
+    left: 1em;
+}

@@ -102,9 +102,7 @@ animations.push(function (deltaTime: number) {
     }
     else {
         camera.up.set(0, 1, 0)
-    }
-    console.log(Math.sin(beta), Math.cos(beta));
-    
+    }    
     controls.update()
 })
 console.log(controls);

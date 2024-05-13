@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { renderer, camera } from "./three/file";
+import { renderer, toggleModel } from "./three/file";
 
 @Component({
   selector: 'app-orientation-controls',
@@ -8,15 +8,8 @@ import { renderer, camera } from "./three/file";
 })
 export class OrientationControlsComponent implements AfterViewInit {
   @ViewChild('orientation') orientationElement!: ElementRef<HTMLDivElement>
-  public cameraObj: any = camera
-
+  public toggleModelBtn = toggleModel
   ngAfterViewInit(): void {
     this.orientationElement.nativeElement.appendChild(renderer.domElement)
-    setInterval(() => {
-      this.cameraObj = camera
-    }, 100)
-  }
-  round(n:number){
-    return Math.round(n * 1000) / 1000
   }
 }
