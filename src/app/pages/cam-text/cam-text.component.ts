@@ -34,7 +34,7 @@ export class CamTextComponent implements AfterViewInit {
     const canvas = document.createElement('canvas'),
       ctx = canvas.getContext('2d'),
       width = this.vid.nativeElement.videoWidth,
-      height = this.vid.nativeElement.videoHeight
+      height = this.vid.nativeElement.videoWidth / (16 / 9)
 
     canvas.width = width
     canvas.height = height

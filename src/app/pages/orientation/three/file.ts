@@ -59,25 +59,11 @@ const orientation: any = {
     beta: 0,
 }
 
-if (window.DeviceOrientationEvent) {
-    window.addEventListener(
-        "deviceorientation",
-        (event) => {
-            //around x, y, z
-            // console.log(event);
-
-            // handleOrientationEvent(90, 0, 45);
-            handleOrientationEvent(Math.floor(Number(event.beta)), Math.floor(Number(event.alpha)), Math.floor(Number(event.gamma)));
-        },
-        true,
-    );
-}
-
 const handleOrientationEvent = (pitch: number, yaw: number, roll: number) => {
     // if (pitch && yaw && roll) {
-        orientation.beta = pitch
-        orientation.alpha = yaw
-        orientation.gamma = roll
+    orientation.beta = pitch
+    orientation.alpha = yaw
+    orientation.gamma = roll
     // }
 };
 
@@ -102,7 +88,7 @@ animations.push(function (deltaTime: number) {
     }
     else {
         camera.up.set(0, 1, 0)
-    }    
+    }
     controls.update()
 })
 console.log(controls);
@@ -113,23 +99,39 @@ console.log(controls);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                              END OF ORIENTATION                                            //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function init() {
 
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener(
+            "deviceorientation",
+            (event) => {
+                //around x, y, z
+                // console.log(event);
 
-let lastFrameTime: number = 0
+                // handleOrientationEvent(90, 0, 45);
+                handleOrientationEvent(Math.floor(Number(event.beta)), Math.floor(Number(event.alpha)), Math.floor(Number(event.gamma)));
+            },
+            true,
+        );
+    }
 
-function animate(time: number) {
-    const deltaTime: number = (time - lastFrameTime) / 1000
-    lastFrameTime = time
-    animations.forEach((item: Function) => {
-        item(deltaTime)
-    })
-    renderer.render(scene, camera)
+    let lastFrameTime: number = 0
+
+    function animate(time: number) {
+        const deltaTime: number = (time - lastFrameTime) / 1000
+        lastFrameTime = time
+        animations.forEach((item: Function) => {
+            item(deltaTime)
+        })
+        renderer.render(scene, camera)
+    }
+
+    renderer.setAnimationLoop(animate)
 }
-
-renderer.setAnimationLoop(animate)
 
 export {
     renderer,
     camera,
-    orientation
+    orientation, 
+    init
 }

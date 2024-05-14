@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { renderer } from './three/file'
+import { renderer, init } from './three/file'
 
 @Component({
   selector: 'app-model',
@@ -12,5 +12,6 @@ export class ModelComponent {
   ngAfterViewInit(): void {
     // FAZ COISAS
     this.model.nativeElement.appendChild(renderer.domElement)
+    init()
   }
 }

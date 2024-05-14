@@ -72,22 +72,6 @@ const orientation: any = {
     beta: 0,
 }
 
-if (window.DeviceOrientationEvent) {
-    window.addEventListener(
-        "deviceorientation",
-        (event) => {
-            //around x, y, z
-            // console.log(event);
-            
-            // handleOrientationEvent(90, 0, 45);
-            if (event.beta && event.alpha && event.gamma) {
-                handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.alpha)), Math.round(Number(event.gamma)));
-            }
-        },
-        true,
-    );
-}
-
 const handleOrientationEvent = (pitch: number, yaw: number, roll: number) => {
     orientation.beta = pitch
     orientation.alpha = yaw
@@ -95,7 +79,7 @@ const handleOrientationEvent = (pitch: number, yaw: number, roll: number) => {
 };
 
 function degToRad(deg: number) {
-    return deg * ( Math.PI / 180)
+    return deg * (Math.PI / 180)
 }
 
 
@@ -108,14 +92,14 @@ animations.push(function (deltaTime: number) {
 
     const pos: [number, number, number] = [0, 10, 0]
     pos[0] = Math.sin(beta) * Math.sin(alpha) * CAMERA_DISTANCE
-    pos[1] = Math.cos(beta) * CAMERA_DISTANCE 
+    pos[1] = Math.cos(beta) * CAMERA_DISTANCE
     pos[2] = Math.sin(beta) * Math.cos(alpha) * CAMERA_DISTANCE
     camera.position.set(...pos)
     if (beta < 0) {
-        camera.up.set(0,-1,0)
+        camera.up.set(0, -1, 0)
     }
-    else  {
-        camera.up.set(0,1,0)
+    else {
+        camera.up.set(0, 1, 0)
     }
     controls.update()
 })
@@ -127,23 +111,40 @@ console.log(controls);
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 //                                              END OF ORIENTATION                                            //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+function init() {
+    if (window.DeviceOrientationEvent) {
+        window.addEventListener(
+            "deviceorientation",
+            (event) => {
+                //around x, y, z
+                // console.log(event);
 
+                // handleOrientationEvent(90, 0, 45);
+                if (event.beta && event.alpha && event.gamma) {
+                    handleOrientationEvent(Math.round(Number(event.beta)), Math.round(Number(event.alpha)), Math.round(Number(event.gamma)));
+                }
+            },
+            true,
+        );
+    }
 
-let lastFrameTime: number = 0
+    let lastFrameTime: number = 0
 
-function animate(time: number) {
-    const deltaTime: number = (time - lastFrameTime) / 1000
-    lastFrameTime = time
-    animations.forEach((item: Function) => {
-        item(deltaTime)
-    })
-    renderer.render(scene, camera)
+    function animate(time: number) {
+        const deltaTime: number = (time - lastFrameTime) / 1000
+        lastFrameTime = time
+        animations.forEach((item: Function) => {
+            item(deltaTime)
+        })
+        renderer.render(scene, camera)
+    }
+
+    renderer.setAnimationLoop(animate)
 }
-
-renderer.setAnimationLoop(animate)
 
 export {
     renderer,
     camera,
-    orientation
+    orientation,
+    init
 }

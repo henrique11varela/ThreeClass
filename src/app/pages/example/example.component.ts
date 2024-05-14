@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { renderer } from './three/file';
+import { renderer, init } from './three/file';
 
 @Component({
   selector: 'app-example',
@@ -12,5 +12,6 @@ export class ExampleComponent implements AfterViewInit {
   ngAfterViewInit(): void {
     // FAZ COISAS
     this.example.nativeElement.appendChild(renderer.domElement)
+    init()
   }
 }

@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { renderer, toggleModel } from "./three/file";
+import { renderer, toggleModel, init } from "./three/file";
 
 @Component({
   selector: 'app-orientation-controls',
@@ -11,5 +11,6 @@ export class OrientationControlsComponent implements AfterViewInit {
   public toggleModelBtn = toggleModel
   ngAfterViewInit(): void {
     this.orientationElement.nativeElement.appendChild(renderer.domElement)
+    init()
   }
 }

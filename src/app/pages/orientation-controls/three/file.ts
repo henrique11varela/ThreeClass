@@ -96,75 +96,77 @@ const material = new THREE.MeshLambertMaterial({
 
 const models: any = []
 
-const loader: GLTFLoader = new GLTFLoader();
-loader.load('../../../../assets/PDRW-2.2.glb',
-    function (glb: any) {
-        console.log(glb);
-        let importedObj: any = null
-        importedObj = glb.scene
-        models.push(importedObj)
-        importedObj.traverse(function (n: THREE.Mesh) {
-            n.material = material
-        })
-        animations.push(function (deltaTime: number) {
-            // importedObj.rotateX(Math.PI / 10 * deltaTime)
-            // importedObj.rotateY(Math.PI / 4 * deltaTime)
-            // importedObj.rotateZ(Math.PI / 6 * deltaTime)
-            // importedObj.traverse(function (n: any) {
-            //     n.material.color.set(new THREE.Color(`rgb(${color.join(',')})`))
-            // })
-        })
-        scene.add(importedObj)
-    },
-    function (xhr: any) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-    function (error: any) {
-        console.log(error);
-    }
-)
-loader.load('../../../../assets/PDRW-2.glb',
-    function (glb: any) {
-        console.log(glb);
-        let importedObj: any = null
-        importedObj = glb.scene
-        importedObj.visible = false
-        models.push(importedObj)
-        importedObj.traverse(function (n: THREE.Mesh) {
-            n.material = material
-        })
-        animations.push(function (deltaTime: number) {
-            // importedObj.rotateX(Math.PI / 10 * deltaTime)
-            // importedObj.rotateY(Math.PI / 4 * deltaTime)
-            // importedObj.rotateZ(Math.PI / 6 * deltaTime)
-            // importedObj.traverse(function (n: any) {
-            //     n.material.color.set(new THREE.Color(`rgb(${color.join(',')})`))
-            // })
-        })
-        scene.add(importedObj)
-    },
-    function (xhr: any) {
-        console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-    function (error: any) {
-        console.log(error);
-    }
-)
-
 const controls = new OrbitControls(camera, renderer.domElement)
 
-let lastFrameTime: number = 0
+function init() {
+    const loader: GLTFLoader = new GLTFLoader();
+    loader.load('../../../../assets/PDRW-2.2.glb',
+        function (glb: any) {
+            console.log(glb);
+            let importedObj: any = null
+            importedObj = glb.scene
+            models.push(importedObj)
+            importedObj.traverse(function (n: THREE.Mesh) {
+                n.material = material
+            })
+            animations.push(function (deltaTime: number) {
+                // importedObj.rotateX(Math.PI / 10 * deltaTime)
+                // importedObj.rotateY(Math.PI / 4 * deltaTime)
+                // importedObj.rotateZ(Math.PI / 6 * deltaTime)
+                // importedObj.traverse(function (n: any) {
+                //     n.material.color.set(new THREE.Color(`rgb(${color.join(',')})`))
+                // })
+            })
+            scene.add(importedObj)
+        },
+        function (xhr: any) {
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        function (error: any) {
+            console.log(error);
+        }
+    )
+    loader.load('../../../../assets/PDRW-2.glb',
+        function (glb: any) {
+            console.log(glb);
+            let importedObj: any = null
+            importedObj = glb.scene
+            importedObj.visible = false
+            models.push(importedObj)
+            importedObj.traverse(function (n: THREE.Mesh) {
+                n.material = material
+            })
+            animations.push(function (deltaTime: number) {
+                // importedObj.rotateX(Math.PI / 10 * deltaTime)
+                // importedObj.rotateY(Math.PI / 4 * deltaTime)
+                // importedObj.rotateZ(Math.PI / 6 * deltaTime)
+                // importedObj.traverse(function (n: any) {
+                //     n.material.color.set(new THREE.Color(`rgb(${color.join(',')})`))
+                // })
+            })
+            scene.add(importedObj)
+        },
+        function (xhr: any) {
+            console.log((xhr.loaded / xhr.total * 100) + '% loaded');
+        },
+        function (error: any) {
+            console.log(error);
+        }
+    )
 
-function animate(time: number) {
-    const deltaTime: number = (time - lastFrameTime) / 1000
-    lastFrameTime = time
-    animations.forEach((item: Function) => {
-        item(deltaTime)
-    })
-    renderer.render(scene, camera)
+    let lastFrameTime: number = 0
+
+    function animate(time: number) {
+        const deltaTime: number = (time - lastFrameTime) / 1000
+        lastFrameTime = time
+        animations.forEach((item: Function) => {
+            item(deltaTime)
+        })
+        renderer.render(scene, camera)
+    }
+
+    renderer.setAnimationLoop(animate)
 }
-
-renderer.setAnimationLoop(animate)
 
 function toggleModel() {
     if (models[0].visible) {
@@ -180,4 +182,5 @@ function toggleModel() {
 export {
     renderer,
     toggleModel,
+    init
 }

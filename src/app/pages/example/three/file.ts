@@ -48,19 +48,22 @@ scene.add(aLight)
 
 const controls = new OrbitControls(camera, renderer.domElement)
 
-let lastFrameTime: number = 0
-function animate(time: number) {
-    const deltaTime: number = (time - lastFrameTime) / 1000
-    lastFrameTime = time
-    cube.rotateX(Math.PI * deltaTime)
-    cube.rotateY(Math.PI * deltaTime)
-    a.rotateX(Math.PI * deltaTime)
-    a.rotateY(Math.PI * deltaTime)
-    renderer.render(scene, camera)
+function init() {
+    let lastFrameTime: number = 0
+    function animate(time: number) {
+        const deltaTime: number = (time - lastFrameTime) / 1000
+        lastFrameTime = time
+        cube.rotateX(Math.PI * deltaTime)
+        cube.rotateY(Math.PI * deltaTime)
+        a.rotateX(Math.PI * deltaTime)
+        a.rotateY(Math.PI * deltaTime)
+        renderer.render(scene, camera)
+    }
+    renderer.setAnimationLoop(animate)
 }
-renderer.setAnimationLoop(animate)
 
 
 export {
     renderer,
+    init
 }

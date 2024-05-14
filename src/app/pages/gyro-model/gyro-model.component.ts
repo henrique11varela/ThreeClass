@@ -1,6 +1,6 @@
 
 import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
-import { renderer } from "./three/file";
+import { renderer, init } from "./three/file";
 @Component({
   selector: 'app-gyro-model',
   templateUrl: './gyro-model.component.html',
@@ -13,6 +13,7 @@ export class GyroModelComponent implements AfterViewInit {
 
   ngAfterViewInit(): void {
     this.gyroElement.nativeElement.appendChild(renderer.domElement)
+    init()
     // setInterval(()=>{
     //   this.cameraObj = camera
     //   this.orientationObj = orientation
