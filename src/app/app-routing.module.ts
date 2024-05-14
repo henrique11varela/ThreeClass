@@ -7,6 +7,7 @@ import { OrientationComponent } from './pages/orientation/orientation.component'
 import { OrientationControlsComponent } from './pages/orientation-controls/orientation-controls.component';
 import { GyroModelComponent } from './pages/gyro-model/gyro-model.component';
 import { CamTextComponent } from './pages/cam-text/cam-text.component';
+import { MultipleWindowsSyncComponent } from './pages/multiple-windows-sync/multiple-windows-sync.component';
 
 const routes: Routes = [
   {
@@ -41,6 +42,10 @@ const routes: Routes = [
   {
     path: 'cam-text',
     component: CamTextComponent
+  },
+  {
+    path: 'multiple-windows-sync',
+    component: MultipleWindowsSyncComponent
   }
 ];
 

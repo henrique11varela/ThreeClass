@@ -91,7 +91,6 @@ animations.push(function (deltaTime: number) {
     }
     controls.update()
 })
-console.log(controls);
 
 
 
