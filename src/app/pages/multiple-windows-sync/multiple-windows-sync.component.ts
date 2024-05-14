@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnDestroy, ViewChild } from '@angular/core';
 import * as THREE from "./three";
 
 @Component({
@@ -6,11 +6,15 @@ import * as THREE from "./three";
   templateUrl: './multiple-windows-sync.component.html',
   styleUrls: ['./multiple-windows-sync.component.scss']
 })
-export class MultipleWindowsSyncComponent implements AfterViewInit {
+export class MultipleWindowsSyncComponent implements AfterViewInit, OnDestroy {
   @ViewChild('canvas') canvasWrapper!: ElementRef<HTMLDivElement>
 
   ngAfterViewInit(): void {
     THREE.init(this.canvasWrapper.nativeElement)
+  }
+  
+  ngOnDestroy(): void {
+    THREE.destroy()
   }
 
 }
