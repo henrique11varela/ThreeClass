@@ -13,21 +13,28 @@ export class CamTextComponent implements AfterViewInit {
   public worker!: TESSERACT.Worker;
 
   ngAfterViewInit(): void {
-    navigator.mediaDevices.getUserMedia({ video: true })
-      .then(async (stream) => {
-        this.worker = await TESSERACT.createWorker('eng')
+    if ('mediaDevices' in navigator && 'getUserMedia' in navigator.mediaDevices) {
+      navigator.mediaDevices.getUserMedia({ video: {
+        facingMode: {
+          ideal: 'environment'
+        }
+      } })
+        .then(async (stream) => {
+          this.worker = await TESSERACT.createWorker('eng')
 
-        this.vid.nativeElement.srcObject = stream
+          this.vid.nativeElement.srcObject = stream
 
-      })
-      .catch(err => console.log(err))
+        }
+        )
+        .catch(err => console.log(err))
+    }
   }
 
   async snap() {
     const canvas = document.createElement('canvas'),
-          ctx = canvas.getContext('2d'),
-          width = this.vid.nativeElement.videoWidth,
-          height = this.vid.nativeElement.videoHeight
+      ctx = canvas.getContext('2d'),
+      width = this.vid.nativeElement.videoWidth,
+      height = this.vid.nativeElement.videoHeight
 
     canvas.width = width
     canvas.height = height
