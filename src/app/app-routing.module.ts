@@ -8,6 +8,7 @@ import { OrientationControlsComponent } from './pages/orientation-controls/orien
 import { GyroModelComponent } from './pages/gyro-model/gyro-model.component';
 import { CamTextComponent } from './pages/cam-text/cam-text.component';
 import { MultipleWindowsSyncComponent } from './pages/multiple-windows-sync/multiple-windows-sync.component';
+import { WindowBallsComponent } from './pages/window-balls/window-balls.component';
 
 const routes: Routes = [
   {
@@ -46,6 +47,10 @@ const routes: Routes = [
   {
     path: 'multiple-windows-sync',
     component: MultipleWindowsSyncComponent
+  },
+  {
+    path: 'window-balls',
+    component: WindowBallsComponent
   }
 ];
 

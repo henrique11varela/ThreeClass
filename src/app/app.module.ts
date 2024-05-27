@@ -11,6 +11,8 @@ import { OrientationControlsComponent } from './pages/orientation-controls/orien
 import { GyroModelComponent } from './pages/gyro-model/gyro-model.component';
 import { CamTextComponent } from './pages/cam-text/cam-text.component';
 import { MultipleWindowsSyncComponent } from './pages/multiple-windows-sync/multiple-windows-sync.component';
+import { WindowBallsComponent } from './pages/window-balls/window-balls.component';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -22,11 +24,13 @@ import { MultipleWindowsSyncComponent } from './pages/multiple-windows-sync/mult
     OrientationControlsComponent,
     GyroModelComponent,
     CamTextComponent,
-    MultipleWindowsSyncComponent
+    MultipleWindowsSyncComponent,
+    WindowBallsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

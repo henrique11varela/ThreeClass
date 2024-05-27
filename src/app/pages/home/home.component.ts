@@ -7,25 +7,24 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   public w: any;
-open(){
-  console.log(window);
   
-  this.w = window.open('localhost:4200', '_blank', 'popup');
-}
-up(){
-  
-  this.w.moveBy(0, -10)
-}
-down(){
-  
-  this.w.moveBy(0, 10)
-}
-left(){
-  
-  this.w.moveBy(-10,0)
-}
-right(){
-  
-  this.w.moveBy(10,0)
-}
+  open() {
+    this.w = window.open('/multiple-windows-sync', '_blank', 'popup');
+  }
+
+  up() {
+    this.w.moveBy(0, -10)
+  }
+
+  down() {
+    this.w.moveBy(0, 10)
+  }
+
+  left() {
+    this.w.moveBy(-10, 0)
+  }
+
+  right() {
+    this.w.moveBy(10, 0)
+  }
 }
